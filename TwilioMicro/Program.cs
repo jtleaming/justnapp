@@ -26,7 +26,7 @@ namespace TwilioMicro
                 }
                 )
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5002")
+                .UseUrls("http://localhost:5002")
                 .Build();
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -33,9 +34,10 @@ namespace TwilioMicro.Controllers
                 body: $"You have a new message from {value.Name}. {value.Message}");
         }
 
-        [HttpGet("{phoneNumber}/{gifUri}")]
-        public void Get(int phoneNumber, List<Uri> gifUri)
+        [HttpGet("{phoneNumber}/{gifcode}")]
+        public void Get(string phoneNumber, string gifcode)
         {
+            var gifUri = $"https://media2.giphy.com/media/{gifcode}/200_d.gif";
             var accountSid = environmentConfiguration.SID;
             var authToken = environmentConfiguration.AUTH;  
 
@@ -44,7 +46,7 @@ namespace TwilioMicro.Controllers
             var message = MessageResource.Create(
                 to: new PhoneNumber("+"+phoneNumber),
                 from: new PhoneNumber(environmentConfiguration.O_NUMBER),
-                mediaUrl: gifUri);
+                mediaUrl: new List<Uri> { new Uri(gifUri)});
         }
     }
 
