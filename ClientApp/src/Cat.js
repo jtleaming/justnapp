@@ -20,7 +20,7 @@ class CatApp extends Component{
     }; 
 
     handleClick(event){
-        axios.post('http://10.0.75.1:5002/api/sendmessage', {
+        axios.post('http://localhost:5002/api/sendmessage', {
             name: this.state.name,
             message: this.state.message
         }, { headers: { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": " Origin, X-Requested-With, Content-Type, Accept" } })
