@@ -19,12 +19,19 @@ namespace TwilioMicro
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
                 .ConfigureAppConfiguration((context, builder) =>
                 {
                     builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                     builder.AddJsonFile($"appsettings.{context.HostingEnvironment}.json", optional: true);
                 }
                 )
+                .ConfigureLogging((builderContext, loggingBuidler) =>
+                {
+                    loggingBuidler.AddConfiguration(builderContext.Configuration.GetSection("Logging"));
+                    loggingBuidler.AddConsole();
+                    loggingBuidler.AddDebug();
+                })
                 .UseStartup<Startup>()
                 .UseUrls("http://localhost:5002")
                 .Build();
