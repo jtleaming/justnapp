@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace TwilioMicro.Controllers
         {
             try
             {
-                string accountSid  = environmentConfiguration.SID;
+                string accountSid = environmentConfiguration.SID;
                 string authToken = environmentConfiguration.AUTH;
                 TwilioClient.Init(accountSid, authToken);
 
@@ -40,7 +41,7 @@ namespace TwilioMicro.Controllers
                     body: $"You have a new message from {value.Name}. {value.Message}");
                 return Ok("Success!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
@@ -54,7 +55,7 @@ namespace TwilioMicro.Controllers
             Thread.Sleep(3000);
             try
             {
-                var gifUri = $"https://media2.giphy.com/media/{gifcode}/200_d.gif";
+                var gifUri = DecodeGif(gifcode);
                 var accountSid = environmentConfiguration.SID;
                 var authToken = environmentConfiguration.AUTH;
 
@@ -73,11 +74,17 @@ namespace TwilioMicro.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        private string DecodeGif(string gifcode)
+        {
+            byte[] bytes = Convert.FromBase64String(gifcode);
+            return Encoding.UTF8.GetString(bytes);
+        }
     }
 
-    public class CatMessage
-    {
-        public string Name;
-        public string Message;
+        public class CatMessage
+        {
+            public string Name;
+            public string Message;
+        }
     }
-}
