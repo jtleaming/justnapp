@@ -29,7 +29,7 @@ namespace TwilioMicro.Controllers
         {
             try
             {
-                string accountSid = environmentConfiguration.SID;
+                string accountSid  = environmentConfiguration.SID;
                 string authToken = environmentConfiguration.AUTH;
                 TwilioClient.Init(accountSid, authToken);
 
