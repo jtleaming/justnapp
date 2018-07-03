@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
+import me from './images/image.jpg'
 
 
 
@@ -61,12 +62,12 @@ class CatApp extends Component{
                 <main>
                     <header>
                         <div className="intro-text">
-                            <p style={{align: 'right', width: '600px', fontsize: '20px'}}>We are the murderous pair that went to jail and murdered the murderers there, that went to hell and discovered the devil delivers some hurt and dispair, used to have powder to push, now I smoke poounds of the kush, holy I'm burning the bush. </p>
+                            <p style={{align: 'right', width: '600px', fontsize: '20px'}}>Hi there, I'm Justin. Technology enthusiest with a passion for software architecture and engineering. When I'm not behind a keyboard I'm cooking or doing something outside. I love great food and good wine.</p>
                             <br />
                             <hr className="star-bright"></hr>
-                            <p>The strength of street knowledge</p>
+                            <p>Also, a strong proponent of the robot uprising.</p>
                         </div>
-                        <img src="https://tse4.mm.bing.net/th?id=OIP.HS-xXop6NIFJhZrYsyDxnAEsEs&pid=15.1" alt="doom"/>
+                        <img src={me} alt="doom" className="doom"/>
                     </header>
                         <section id="portfolio">
                             <h2>Portfolio</h2>
@@ -103,13 +104,16 @@ class CatApp extends Component{
                                 </form>
                                     <div>
                                         <p>
-                                            We returned from the depths to the badland, with a gun and a knife in the waste band...
+                                            Have some web or app development project you need coded?
+                                        </p>
+                                        <p style={{fontWeight:1000, fontSize:25}}>
+                                            Look no further!
                                         </p>
                                         <p>
-                                            ...went to war with devil and shaytan. He wore a bad toupee and a spray tan.
+                                            I'm open for hire. Send me a message to get in touch. Or just send me a message to say 'what's up?'
                                         </p>
                                         <p>
-                                            So high now hoping that I land, on the thai stick moving through Thailand. On the radio heard the plane highjack. Government did that while they cooked crack...
+                                            (Also, if you're a tattoo professional I trade my services for tattoos.)
                                         </p>
                                     </div>
                                 </div>
@@ -119,8 +123,10 @@ class CatApp extends Component{
                     <footer>
                         <div id="footer-above">
                             <div>
-                                <h3>The public enemy number one...</h3>
-                                <p>Coffee <i className="fa fa-fw fa-coffee"></i> Music <i className="fa fa-fw fa-headphones"> </i> Stuff <i className="fa fa-fw fa-circle"> </i></p>
+                                <h3>Fueled by...</h3>
+                                <div style={{padding:8}}>
+                                    <p>Coffee <i className="fa fa-fw fa-coffee"></i> Music <i className="fa fa-fw fa-headphones"> </i> Stuff <i className="fa fa-fw fa-circle"> </i></p>
+                                </div>
                             </div>
                             <div>
                                 <h3>Find Me</h3>
@@ -131,10 +137,6 @@ class CatApp extends Component{
                                 <li><a target='_blank' rel="noopener noreferrer" className="button social" href="https://twitter.com/justleaming"><i className="fa fa-fw fa-twitter"></i></a></li>
                                 </ul>
                             </div>
-                        </div>
-
-                        <div id="footer-below">
-                            <h5>Can't touch this...</h5>
                         </div>
                     </footer>
             </div>
