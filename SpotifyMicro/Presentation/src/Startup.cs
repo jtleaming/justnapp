@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Tracks;
+using Domain;
 using Infrastructure.Interfaces;
 using Infrastructure.Network;
 using Infrastructure.SpotifyServices;
@@ -34,6 +35,7 @@ namespace Presentation
             services.AddSingleton<IGetTracksQuery, GetTracksQuery>();
             services.AddSingleton<ITrackService, TrackService>();
             services.AddSingleton<IWebClientWrapper, WebClientWrapper>();
+            services.AddSingleton<ITrackInfo, TrackInfo>();
 
         }
 

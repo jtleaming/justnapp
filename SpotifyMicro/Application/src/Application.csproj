@@ -2,7 +2,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\src\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Domain\src\Domain.csproj" />
   </ItemGroup>
+
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
