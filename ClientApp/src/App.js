@@ -25,7 +25,7 @@ const MainPanda = (props) => {
 };
 
 const EightyMusic = (props) => {
-  let songs = [{ title: "Paul's Boutique", link: "https://open.spotify.com/embed/track/2qq0RYYIuQxXcOxQKN0drC" }];
+  let songs = [{ title: "Paul's Boutique", link: "https://open.spotify.com/embed/track/5AIi7YlHwURZe2BNcyU9nh" }];
   return (
     <div className="text-center">
       <h3 className="text-center col-xs-pull-7" style={{ color: '#e65c00' }}>Check out what I'm listening to on Spotify!</h3>
