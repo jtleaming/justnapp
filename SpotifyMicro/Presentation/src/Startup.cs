@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Application.Tracks;
 using Domain;
 using Infrastructure.Interfaces;
@@ -10,12 +6,9 @@ using Infrastructure.Network;
 using Infrastructure.SpotifyServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Presentation
 {
@@ -31,12 +24,20 @@ namespace Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddOptions();
+            var config = new WebConfig();
+            var authenticationService = new AuthenticationService();
+            services.BuildServiceProvider();
+
+            Configuration.GetSection("webConfig").Bind(config);
+
             services.AddSingleton<IGetTracksQuery, GetTracksQuery>();
             services.AddSingleton<ITrackService, TrackService>();
-            services.AddSingleton<IWebClientWrapper, WebClientWrapper>();
+            services.AddSingleton<IAuthenticationService>(authenticationService);
+            services.AddSingleton<IWebClientWrapper>(new WebClientWrapper(config, authenticationService));
             services.AddSingleton<ITrackInfo, TrackInfo>();
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
