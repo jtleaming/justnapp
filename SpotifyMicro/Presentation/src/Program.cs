@@ -14,7 +14,19 @@ namespace Presentation
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var con = new ConfigurationBuilder().AddEnvironmentVariables().Build();
+            var hostUrl = string.Empty;
+            if (con["ASPNETCORE_ENVIRONMENT"] == "Development")
+            {
+                hostUrl = "https://localhost:5112;http://localhost:5111";
+                Console.WriteLine(con["ASPNETCORE_ENVIRONMENT"]);
+            }
+            else
+            {
+                hostUrl = "https://0.0.0.0:5112;http://0.0.0.0:5111";
+                Console.WriteLine(con["ASPNETCORE_ENVIRONMENT"]);
+            }
+            CreateWebHostBuilder(args).UseUrls(hostUrl).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

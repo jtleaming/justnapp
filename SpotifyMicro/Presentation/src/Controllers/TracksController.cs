@@ -1,10 +1,12 @@
 using System;
 using Application.Interfaces;
 using Domain;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
 {
+    [EnableCors("DevPolicy")]
     [Route("Tracks")]
     public class TracksController : Controller
     {
@@ -15,9 +17,16 @@ namespace Presentation.Controllers
             this.tracksQuery = tracksQuery;
         }
         [HttpGet]
-        public string GetLatestTrack()
+        public ActionResult<string> GetLatestTrack()
         {
-            return tracksQuery.GetLatest();
+            try
+            {
+                return Ok( tracksQuery.GetLatest());
+            }
+            catch (System.Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }
