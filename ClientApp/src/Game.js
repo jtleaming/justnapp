@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 
 var possibleCombinationSum = function (arr, n) {
@@ -11,7 +12,7 @@ var possibleCombinationSum = function (arr, n) {
         arr.pop();
         return possibleCombinationSum(arr, n);
     }
-    var listSize = arr.length, combinationsCount = (1 << listSize)
+    var listSize = arr.length, combinationsCount = (1 << listSize);
     for (var i = 1; i < combinationsCount; i++) {
         var combinationSum = 0;
         for (var j = 0; j < listSize; j++) {
@@ -23,6 +24,9 @@ var possibleCombinationSum = function (arr, n) {
 };
 
 const Stars = (props) => {
+    Stars.propTypes = {
+        numberOfStars: PropTypes.any
+    };
     return (
         <div className="col-5">
             {_.range(props.numberOfStars).map(i =>
@@ -33,6 +37,10 @@ const Stars = (props) => {
 };
 
 const DoneFrame = (props) => {
+    DoneFrame.propTypes = {
+        doneStatus: PropTypes.any,
+        resetGame: PropTypes.any
+    };
     return (
         <div className="text-center">
             <h2>{props.doneStatus}</h2>
@@ -42,17 +50,25 @@ const DoneFrame = (props) => {
 };
 
 const Button = (props) => {
+    Button.propTypes = {
+        answerIsCorrect: PropTypes.any,
+        submitAnswer: PropTypes.any,
+        selectedNumbers: PropTypes.any,
+        addNumbers: PropTypes.any,
+        redraws: PropTypes.any,
+        redraw: PropTypes.any
+    };
     let button;
     switch (props.answerIsCorrect) {
-        case true:
-            button = <button className="btn btn-success" onClick={props.submitAnswer}><i className="fa fa-check"></i></button>;
-            break;
-        case false:
-            button = <button className="btn btn-danger"><i className="fa fa-times"></i></button>;
-            break;
-        default:
-            button = <button className="btn" disabled={props.selectedNumbers.length === 0} onClick={props.addNumbers}>=</button>;
-            break;
+    case true:
+        button = <button className="btn btn-success" onClick={props.submitAnswer}><i className="fa fa-check"></i></button>;
+        break;
+    case false:
+        button = <button className="btn btn-danger"><i className="fa fa-times"></i></button>;
+        break;
+    default:
+        button = <button className="btn" disabled={props.selectedNumbers.length === 0} onClick={props.addNumbers}>=</button>;
+        break;
     }
     return (
         <div className="col-2 text-center">
@@ -67,6 +83,9 @@ const Button = (props) => {
 };
 
 const Answer = (props) => {
+    Answer.propTypes = {
+        unSelectNumber: PropTypes.any
+    };
     return (
         <div className="col-5">
             {props.selectedNumbers.map((number, i) =>
@@ -77,10 +96,15 @@ const Answer = (props) => {
 };
 
 const Numbers = (props) => {
+    Numbers.propTypes = {
+        usedNumbers: PropTypes.any,
+        selectedNumbers: PropTypes.any,
+        selectNumber: PropTypes.any
+    };
     const numberClassName = (number) => {
         if (props.usedNumbers.indexOf(number) >= 0) { return 'used'; }
         if (props.selectedNumbers.indexOf(number) >= 0) { return 'selected'; }
-    }
+    };
     return (
         <div className="card text-center">
             <div>
@@ -96,7 +120,7 @@ Numbers.list = _.range(1, 10);
 
 
 class Game extends Component {
-    static randomNumber = () => 1 + Math.floor(Math.random() * 9);
+
     static setInitialState = () => ({
         selectedNumbers: [],
         usedNumbers: [],
@@ -105,6 +129,7 @@ class Game extends Component {
         redraws: 5,
         done: null
     });
+    static randomNumber = () => 1 + Math.floor(Math.random() * 9);
     state = Game.setInitialState();
     resetGame = () => this.setState(Game.setInitialState());
     selectNumber = (clickedNumber) => {
@@ -166,8 +191,8 @@ class Game extends Component {
     render() {
         const { selectedNumbers, usedNumbers, numberOfStars, answerIsCorrect, redraws, done } = this.state;
         return (
-            <div class="container">
-                <Link to="/" style={{float:'right'}}><button style={{ backgroundColor: '#7B6282' }}>Home</button></Link>
+            <div className="container">
+                <Link to="/" style={{ float: 'right' }}><button style={{ backgroundColor: '#7B6282' }}>Home</button></Link>
                 <h3>Play Nine</h3>
                 <hr />
                 <div className="row">
@@ -196,7 +221,7 @@ class PlayNine extends Component {
             <div>
                 <Game />
             </div>
-        )
+        );
     }
 }
 
