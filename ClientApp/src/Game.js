@@ -84,7 +84,8 @@ const Button = (props) => {
 
 const Answer = (props) => {
     Answer.propTypes = {
-        unSelectNumber: PropTypes.any
+        unSelectNumber: PropTypes.any,
+        selectedNumbers: PropTypes.any
     };
     return (
         <div className="col-5">

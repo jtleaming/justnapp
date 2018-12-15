@@ -62,7 +62,7 @@ class CatApp extends Component{
                     <main>
                         <header>
                             <div className="intro-text">
-                                <p style={{align: 'right', width: '600px', fontsize: '20px'}}>Hi there, I'm Justin. Technology enthusiest with a passion for software architecture and engineering. When I'm not behind a keyboard I'm cooking or doing something outside. I love great food and good wine.</p>
+                                <p style={{ align: 'right', width: '600px', fontsize: '20px' }}>Hi there, I&apos;m Justin. Technology enthusiest with a passion for software architecture and engineering. When I&apos;m not behind a keyboard I&apos;m cooking or doing something outside. I love great food and good wine.</p>
                                 <br />
                                 <hr className="star-bright"></hr>
                                 <p>Also, a strong proponent of the robot uprising.</p>
@@ -110,10 +110,10 @@ class CatApp extends Component{
                                             Look no further!
                                     </p>
                                     <p>
-                                            I'm open for hire. Send me a message to get in touch. Or just send me a message to say 'what's up?'
+                                            I&apos;m open for hire. Send me a message to get in touch. Or just send me a message to say &apos;what&apos;s up?&apos;
                                     </p>
                                     <p>
-                                            (Also, if you're a tattoo professional I trade my services for tattoos.)
+                                            (Also, if you&apos;re a tattoo professional I trade my services for tattoos.)
                                     </p>
                                 </div>
                             </div>
