@@ -11,7 +11,7 @@ const MainPanda = () => {
             <div className="jumbotron">
                 <h1 className="text-center h1style">Engineer & Technologist</h1>
                 <h2 className="text-center h2style" >
-                    <em>Hi, I'm Justin Leaming.</em>
+                    <em>Hi, I&apos;m Justin Leaming.</em>
                 </h2 >
                 <h3 className="text-center">
           Learn more about <Link to='/rapcat'>me...</Link>
@@ -28,7 +28,7 @@ const EightyMusic = () => {
     let songs = [{ title: 'Paul\'s Boutique', link: 'https://open.spotify.com/embed/track/5AIi7YlHwURZe2BNcyU9nh' }];
     return (
         <div className="text-center">
-            <h3 className="text-center col-xs-pull-7" style={{ color: '#e65c00' }}>Check out what I'm listening to on Spotify!</h3>
+            <h3 className="text-center col-xs-pull-7" style={{ color: '#e65c00' }}>Check out what I&apos;m listening to on Spotify!</h3>
             <div className="col-xs-12 col-xs-offset-4">
                 <h4 className='h4style'><i className='fa-music fa' /> <i className='fa-music fa' /> The tunes... <i className='fa-music fa' /> <i className='fa-music fa' /></h4>
                 <ul className="">
