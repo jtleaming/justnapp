@@ -4,6 +4,8 @@ import Button from './Button';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import justin from './images/rename.jpg';
+import Axios from 'axios';
+import PropTypes from 'prop-types';
 
 const MainPanda = () => {
     return (
@@ -24,33 +26,44 @@ const MainPanda = () => {
     );
 };
 
-const EightyMusic = () => {
-    let songs = [{ title: 'Paul\'s Boutique', link: 'https://open.spotify.com/embed/track/5AIi7YlHwURZe2BNcyU9nh' }];
+const EightyMusic = (props) => {
+    EightyMusic.propTypes = {
+        track: PropTypes.object
+    };
+
+    let track = props.track;
+
     return (
         <div className="text-center">
             <h3 className="text-center col-xs-pull-7" style={{ color: '#e65c00' }}>Check out what I&apos;m listening to on Spotify!</h3>
             <div className="col-xs-12 col-xs-offset-4">
                 <h4 className='h4style'><i className='fa-music fa' /> <i className='fa-music fa' /> The tunes... <i className='fa-music fa' /> <i className='fa-music fa' /></h4>
                 <ul className="">
-                    <div>{
-                        songs.map((song, i) =>
-                            <Button title={song.title} link={song.link} key={i} />
-                        )}
-
+                    <div>
+                        <Button title={`${track.title} ${track.artist}`} link={track.uri} />
                     </div>
                 </ul>
-                <h7>Click here for <a href="https://en.wikipedia.org/wiki/Giant_panda">pandas</a>.</h7>
             </div>
         </div>
     );
 };
 
 class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            track: {}
+        };
+    }
+    async componentDidMount () {
+        var response = await Axios.get('http://localhost:5111/tracks', {headers: {'Access-Control-Allow-Origin': '*'}});
+        this.setState({track : response.data});
+    }
     render() {
         return (
             <div>
                 <MainPanda />
-                <EightyMusic />
+                <EightyMusic track={this.state.track}/>
             </div>
         );
     }
