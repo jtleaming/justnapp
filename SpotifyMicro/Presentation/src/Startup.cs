@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System;
+using Application.Interfaces;
 using Application.Tracks;
 using Domain;
 using Infrastructure.Interfaces;
@@ -14,12 +15,14 @@ namespace Presentation
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Env { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -27,7 +30,6 @@ namespace Presentation
             services.AddOptions();
             var config = new WebConfig();
             var authenticationService = new AuthenticationService();
-            services.BuildServiceProvider();
 
             Configuration.GetSection("webConfig").Bind(config);
 
@@ -38,6 +40,29 @@ namespace Presentation
             services.AddSingleton<ITrackInfo, TrackInfo>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            services.AddCors(options =>
+            {
+                Console.WriteLine("Starting Cors");
+                if (Env.IsDevelopment())
+                {
+                    options.AddPolicy("DevPolicy", policy =>
+                            // policy.WithOrigins("http://localhost:3006")
+                            //     .WithMethods("Get")
+                            //     .AllowAnyHeader());
+                            policy.AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowAnyMethod());
+                }
+                else
+                {
+                    options.AddDefaultPolicy(policy =>
+                            policy.AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowAnyOrigin());
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +77,8 @@ namespace Presentation
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
+            app.UseCors("DevPolicy");
             app.UseMvc();
         }
     }

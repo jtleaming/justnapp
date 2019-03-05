@@ -16,16 +16,16 @@ class Button extends Component {
             <div>
                 <button className="btn" onClick={this.collapse}>{this.props.title}</button>
                 <Collapse isOpened={this.state.open}>
-                    <iframe src={this.props.link} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="noize"></iframe>
+                    <iframe src={this.props.link} width="300" height="380" frameBorder="0" allowTransparency="true" allow="encrypted-media" title="noize"></iframe>
                 </Collapse>
             </div>
         );
     }
-};
+}
 
 Button.propTypes = {
     title: PropTypes.string,
     link: PropTypes.string
-}
+};
 
 export default Button;
