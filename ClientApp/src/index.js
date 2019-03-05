@@ -4,10 +4,10 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 import routes from './router';
 
-ReactDOM.render(<Router > 
+ReactDOM.render(<BrowserRouter > 
     {routes}
-</Router>, document.getElementById('root'));
+</BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();

@@ -157,7 +157,7 @@ class Game extends Component {
     updateDoneStatus = () => {
         this.setState(prevState => {
             if (prevState.usedNumbers.length === 9) {
-                return { done: 'Done. Nice!' };
+                return { done: 'Done. Nice!' }; { }
             }
             if (prevState.redraws === 0 && !this.possibleSolutions(prevState))
                 return { done: 'Game Over!' };
@@ -176,7 +176,7 @@ class Game extends Component {
                         answerIsCorrect={answerIsCorrect} submitAnswer={this.submitAnswer}
                         redraw={this.redraw} redraws={redraws} />
                     <Answer selectedNumbers={selectedNumbers}
-                        unSelectNumber={this.unSelectNumber} />
+                        unSelectNumber={this.unSelectNumber} />{}
                 </div>
                 <br />
                 {done ?

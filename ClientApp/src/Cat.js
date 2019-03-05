@@ -62,7 +62,7 @@ class CatApp extends Component{
                 <main>
                     <header>
                         <div className="intro-text">
-                            <p style={{align: 'right', width: '600px', fontsize: '20px'}}>Hi there, I'm Justin. Technology enthusiest with a passion for software architecture and engineering. When I'm not behind a keyboard I'm cooking or doing something outside. I love great food and good wine.</p>
+                            <p style={{align: 'right', width: '600px', fontsize: '20px'}}>Hi there, I'm Justin. Technology enthusiest with a passion for software architecture and engineering. When I'm not behind a keyboard I'm cooking or doing something outside. I love great food and good wine. My portfolio is a little sparse, so here are some cats with attitude.</p>
                             <br />
                             <hr className="star-bright"></hr>
                             <p>Also, a strong proponent of the robot uprising.</p>
