@@ -16,9 +16,9 @@ RUN npm i -g serve
 
 RUN npm install --silent
 
-COPY --from=build /usr/src/app/dist .
+COPY --from=build /usr/src/app/dist ./dist
 COPY package.json .
 
-EXPOSE 8080
+EXPOSE 3006
 
-CMD ["npm", "start"]
+CMD ["npm", "run-script", "start:prod"]
